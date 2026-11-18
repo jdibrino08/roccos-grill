@@ -12,8 +12,11 @@ import {
   CreditCard,
   Send,
   ShoppingBag,
+  Copy,
+  Check,
 } from 'lucide-react'
 import { motion, AnimatePresence } from 'motion/react'
+import { useLenis } from 'lenis/react'
 import type { CartItem, CheckoutCustomer } from '../types/cart'
 import { BRAND_CONFIG } from '../data/brandConfig'
 import { useBcvRate, formatVes } from '../hooks/useBcvRate'
@@ -38,6 +41,8 @@ export function CartDrawer({
   onOpenMenu,
 }: CartDrawerProps) {
   const { rate } = useBcvRate()
+  const lenis = useLenis()
+  const [copiedData, setCopiedData] = useState(false)
 
   // Checkout Form State
   const [customer, setCustomer] = useState<CheckoutCustomer>({
@@ -52,7 +57,19 @@ export function CartDrawer({
     notes: '',
   })
 
-  // Prevent background scroll while open
+  // Stop Lenis while drawer is open (prevents 2-finger touchpad scroll lock, ERR-11)
+  useEffect(() => {
+    if (isOpen) {
+      lenis?.stop()
+    } else {
+      lenis?.start()
+    }
+    return () => {
+      lenis?.start()
+    }
+  }, [isOpen, lenis])
+
+  // Prevent background scroll and support Escape key
   useEffect(() => {
     if (!isOpen) return
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -80,6 +97,16 @@ export function CartDrawer({
 
   const grandTotalUsd = subtotalUsd + deliveryFee
   const grandTotalBs = formatVes(grandTotalUsd, rate)
+
+  // Copy Pago Móvil details to clipboard
+  const handleCopyPagoMovil = () => {
+    const pm = BRAND_CONFIG.paymentInfo.pagoMovil
+    const textToCopy = `Banco: ${pm.bank}\nTeléfono: ${pm.phone}\nCédula: ${pm.idNumber}\nMonto: ${grandTotalBs || '$' + grandTotalUsd}`
+    navigator.clipboard.writeText(textToCopy).then(() => {
+      setCopiedData(true)
+      setTimeout(() => setCopiedData(false), 2500)
+    })
+  }
 
   // Send WhatsApp Comanda
   const handleSendWhatsApp = () => {
@@ -355,11 +382,12 @@ export function CartDrawer({
                       </button>
                     </div>
 
-                    {/* Drive-thru extra vehicle note */}
+                    {/* Drive-thru extra vehicle note (Zero raw emojis in UI, ERR-01 fix) */}
                     {customer.deliveryMode === 'driveThru' && (
                       <div className="p-3 rounded-xl bg-red-950/30 border border-red-500/30 text-xs">
-                        <label className="text-[11px] font-bold text-red-300 block mb-1">
-                          🚗 Datos de tu auto (Para llevártelo a la ventana):
+                        <label className="text-[11px] font-bold text-red-300 flex items-center mb-1">
+                          <Car className="h-3.5 w-3.5 text-red-400 inline mr-1.5" />
+                          <span>Datos de tu auto (Para llevártelo a la ventana):</span>
                         </label>
                         <input
                           type="text"
@@ -453,24 +481,41 @@ export function CartDrawer({
                       </button>
                     </div>
 
-                    {/* Pago Móvil Details Card */}
+                    {/* Pago Móvil Details Card with 1-Click Copy */}
                     {customer.paymentMethod === 'pagoMovil' && (
-                      <div className="p-3 rounded-xl bg-emerald-950/25 border border-emerald-500/30 text-xs text-stone-300 space-y-1">
-                        <div className="flex items-center justify-between text-emerald-300 font-bold mb-1">
+                      <div className="p-3.5 rounded-xl bg-emerald-950/25 border border-emerald-500/30 text-xs text-stone-300 space-y-2">
+                        <div className="flex items-center justify-between text-emerald-300 font-bold">
                           <span>Datos Pago Móvil:</span>
                           {grandTotalBs && (
-                            <span className="font-mono text-white text-xs">{grandTotalBs}</span>
+                            <span className="font-mono text-white text-xs bg-emerald-900/60 px-2 py-0.5 rounded border border-emerald-500/30">
+                              {grandTotalBs}
+                            </span>
                           )}
                         </div>
-                        <p className="font-mono text-[11px] text-stone-300">
-                          Banco: {BRAND_CONFIG.paymentInfo.pagoMovil.bank}
-                        </p>
-                        <p className="font-mono text-[11px] text-stone-300">
-                          Teléfono: {BRAND_CONFIG.paymentInfo.pagoMovil.phone}
-                        </p>
-                        <p className="font-mono text-[11px] text-stone-300">
-                          Cédula: {BRAND_CONFIG.paymentInfo.pagoMovil.idNumber}
-                        </p>
+                        <div className="grid grid-cols-2 gap-2 text-[11px] font-mono text-stone-300">
+                          <p>Banco: <strong className="text-white">{BRAND_CONFIG.paymentInfo.pagoMovil.bank}</strong></p>
+                          <p>Teléfono: <strong className="text-white">{BRAND_CONFIG.paymentInfo.pagoMovil.phone}</strong></p>
+                          <p className="col-span-2">Cédula: <strong className="text-white">{BRAND_CONFIG.paymentInfo.pagoMovil.idNumber}</strong></p>
+                        </div>
+
+                        {/* Copy details button */}
+                        <button
+                          type="button"
+                          onClick={handleCopyPagoMovil}
+                          className="w-full py-1.5 px-3 rounded-lg bg-emerald-900/40 hover:bg-emerald-800/60 border border-emerald-500/30 text-emerald-300 text-xs font-medium flex items-center justify-center gap-1.5 transition-colors cursor-pointer"
+                        >
+                          {copiedData ? (
+                            <>
+                              <Check className="h-3.5 w-3.5 text-emerald-400" />
+                              <span className="text-emerald-300 font-bold">¡Datos copiados!</span>
+                            </>
+                          ) : (
+                            <>
+                              <Copy className="h-3.5 w-3.5" />
+                              <span>Copiar datos de Pago Móvil</span>
+                            </>
+                          )}
+                        </button>
                       </div>
                     )}
 

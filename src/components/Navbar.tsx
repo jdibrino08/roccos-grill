@@ -50,18 +50,18 @@ export function Navbar({ cartCount, onOpenCart, onScrollToMenu }: NavbarProps) {
               <span>Av. Don Julio Centeno</span>
             </a>
 
-            {/* Subtle Tasa BCV Pill */}
+            {/* Subtle Tasa BCV Pill (Minimal & discreet, OK-09) */}
             {rate && (
-              <div className="flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-950/30 border border-emerald-500/20 text-xs text-emerald-300/90 font-mono">
+              <div className="flex items-center gap-2 px-2.5 py-1 rounded-full bg-white/[0.04] border border-white/[0.08] text-xs text-stone-300 font-mono">
                 <span className="relative flex h-1.5 w-1.5">
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
                   <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-emerald-500"></span>
                 </span>
-                <span>BCV: {formatRateDisplay(rate)}</span>
+                <span className="text-[11px]">BCV: {formatRateDisplay(rate)}</span>
                 <button
                   onClick={() => void refresh()}
                   disabled={isRefreshing}
-                  className="hover:text-emerald-200 cursor-pointer transition-transform active:rotate-180 disabled:opacity-50"
+                  className="text-stone-400 hover:text-white cursor-pointer transition-transform active:rotate-180 disabled:opacity-50"
                   aria-label="Actualizar tasa BCV"
                 >
                   <RefreshCw className={`h-2.5 w-2.5 ${isRefreshing ? 'animate-spin' : ''}`} />

@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { X, Plus, Minus, Check, Flame, Clock, Users } from 'lucide-react'
 import { motion, AnimatePresence } from 'motion/react'
+import { useLenis } from 'lenis/react'
 import type { MenuItem, MenuItemOption } from '../data/menuData'
 import type { CartItem, SelectedOption } from '../types/cart'
 import { useBcvRate, formatVes } from '../hooks/useBcvRate'
@@ -21,6 +22,7 @@ function ItemCustomizerDialog({
   onAddToCart: (cartItem: CartItem) => void
 }) {
   const { rate } = useBcvRate()
+  const lenis = useLenis()
   const [quantity, setQuantity] = useState(1)
 
   // Initialize required single-choice options directly in state
@@ -37,6 +39,7 @@ function ItemCustomizerDialog({
 
   // Prevent background Lenis scroll while customizer is open
   useEffect(() => {
+    lenis?.stop()
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape') onClose()
     }
@@ -44,10 +47,11 @@ function ItemCustomizerDialog({
     document.body.style.overflow = 'hidden'
 
     return () => {
+      lenis?.start()
       window.removeEventListener('keydown', handleKeyDown)
       document.body.style.overflow = 'unset'
     }
-  }, [onClose])
+  }, [lenis, onClose])
 
   const handleToggleOption = (
     groupId: string,

@@ -12,6 +12,7 @@ interface MenuSectionProps {
 export function MenuSection({ onSelectItem }: MenuSectionProps) {
   const { rate } = useBcvRate()
   const [activeCategory, setActiveCategory] = useState<string>('brasas')
+  const [currencyMode, setCurrencyMode] = useState<'USD' | 'VES'>('USD')
 
   const filteredItems = MENU_ITEMS.filter((item) => item.category === activeCategory)
   const currentCategoryObj = MENU_CATEGORIES.find((c) => c.id === activeCategory)
@@ -19,7 +20,7 @@ export function MenuSection({ onSelectItem }: MenuSectionProps) {
   return (
     <section id="menu-section" className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
       {/* Section Header */}
-      <div className="text-center max-w-2xl mx-auto mb-12">
+      <div className="text-center max-w-2xl mx-auto mb-10">
         <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-red-600/15 border border-red-500/30 text-red-400 text-xs font-mono uppercase tracking-wider mb-3 shadow-[0_0_15px_rgba(220,38,38,0.15)]">
           <Flame className="h-3.5 w-3.5 text-red-500" />
           <span>Nuestra Carta Digital</span>
@@ -32,24 +33,58 @@ export function MenuSection({ onSelectItem }: MenuSectionProps) {
         </p>
       </div>
 
-      {/* Category Tabs Strip */}
-      <div className="flex items-center justify-start sm:justify-center gap-2 overflow-x-auto pb-4 mb-8 no-scrollbar">
-        {MENU_CATEGORIES.map((cat) => {
-          const isActive = cat.id === activeCategory
-          return (
+      {/* Category Tabs & Currency Mode Toggle Strip */}
+      <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pb-4 mb-6 border-b border-white/[0.08]">
+        {/* Category Tabs Strip */}
+        <div className="flex items-center gap-2 overflow-x-auto w-full sm:w-auto pb-2 sm:pb-0 no-scrollbar">
+          {MENU_CATEGORIES.map((cat) => {
+            const isActive = cat.id === activeCategory
+            return (
+              <button
+                key={cat.id}
+                onClick={() => setActiveCategory(cat.id)}
+                className={`relative px-4 sm:px-5 py-2.5 rounded-xl text-xs sm:text-sm font-bold tracking-wide whitespace-nowrap transition-all cursor-pointer ${
+                  isActive
+                    ? 'text-white bg-gradient-to-r from-red-600 via-rose-600 to-red-700 shadow-[0_4px_20px_rgba(220,38,38,0.45)] border border-red-500/50'
+                    : 'text-stone-300 hover:text-white bg-white/[0.04] border border-white/[0.08] hover:border-white/20'
+                }`}
+              >
+                <span>{cat.name}</span>
+              </button>
+            )
+          })}
+        </div>
+
+        {/* Currency Switch (USD / VES) - OK-09 Elegant BCV Pattern */}
+        <div className="flex items-center gap-2 shrink-0 self-end sm:self-center">
+          <span className="text-[11px] font-mono text-stone-400 uppercase tracking-wider hidden sm:inline">
+            Moneda:
+          </span>
+          <div className="inline-flex p-1 rounded-xl bg-white/[0.05] border border-white/[0.1]">
             <button
-              key={cat.id}
-              onClick={() => setActiveCategory(cat.id)}
-              className={`relative px-4 sm:px-5 py-2.5 rounded-xl text-xs sm:text-sm font-bold tracking-wide whitespace-nowrap transition-all cursor-pointer ${
-                isActive
-                  ? 'text-white bg-gradient-to-r from-red-600 via-rose-600 to-red-700 shadow-[0_4px_20px_rgba(220,38,38,0.45)] border border-red-500/50'
-                  : 'text-stone-300 hover:text-white bg-white/[0.04] border border-white/[0.08] hover:border-white/20'
+              type="button"
+              onClick={() => setCurrencyMode('USD')}
+              className={`px-3 py-1 rounded-lg text-xs font-mono font-bold transition-all cursor-pointer ${
+                currencyMode === 'USD'
+                  ? 'bg-red-600 text-white shadow-sm'
+                  : 'text-stone-400 hover:text-white'
               }`}
             >
-              <span>{cat.name}</span>
+              USD ($)
             </button>
-          )
-        })}
+            <button
+              type="button"
+              onClick={() => setCurrencyMode('VES')}
+              className={`px-3 py-1 rounded-lg text-xs font-mono font-bold transition-all cursor-pointer ${
+                currencyMode === 'VES'
+                  ? 'bg-red-600 text-white shadow-sm'
+                  : 'text-stone-400 hover:text-white'
+              }`}
+            >
+              VES (Bs.)
+            </button>
+          </div>
+        </div>
       </div>
 
       {/* Subtitle for the active category */}
@@ -122,18 +157,19 @@ export function MenuSection({ onSelectItem }: MenuSectionProps) {
                 </div>
 
                 <div className="pt-3 border-t border-white/[0.08] flex items-center justify-between">
-                  {/* Pricing: Whole USD + Live BCV */}
+                  {/* Pricing: Clean Switch between USD and VES (OK-09) */}
                   <div>
-                    <span className="text-xs text-stone-500 block uppercase font-mono tracking-wider">
-                      Precio
+                    <span className="text-[10px] text-stone-500 block uppercase font-mono tracking-wider">
+                      {currencyMode === 'USD' ? 'Precio USD' : 'Tasa Oficial BCV'}
                     </span>
                     <div className="flex items-baseline gap-2">
-                      <span className="text-xl font-black font-mono text-white">
-                        ${item.price}
-                      </span>
-                      {priceBs && (
-                        <span className="text-xs font-mono text-emerald-400/90">
-                          {priceBs}
+                      {currencyMode === 'USD' ? (
+                        <span className="text-2xl font-black font-mono text-white">
+                          ${item.price}
+                        </span>
+                      ) : (
+                        <span className="text-lg sm:text-xl font-black font-mono text-emerald-400">
+                          {priceBs || `$${item.price}`}
                         </span>
                       )}
                     </div>
@@ -152,6 +188,13 @@ export function MenuSection({ onSelectItem }: MenuSectionProps) {
             </motion.div>
           )
         })}
+      </div>
+
+      {/* Bottom Legal / Operational Note */}
+      <div className="mt-12 text-center text-xs text-stone-500 font-mono">
+        <p>
+          • Precios en Bolívares calculados a la tasa oficial del Banco Central de Venezuela (BCV) del día.
+        </p>
       </div>
     </section>
   )
