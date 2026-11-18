@@ -64,9 +64,9 @@ export interface BrandConfig {
 export const BRAND_CONFIG: BrandConfig = {
   name: "Rocco's Grill",
   legalName: "Rocco's Grill San Diego C.A.",
-  tagline: "Auténtica Parrilla al Carbón, Cortes Premium & Burgers Gourmet",
-  heroHeadline: "AUTÉNTICO SABOR A LA BRASA.",
-  heroSubheadline: "Cortes madurados a leña de roble, smash burgers al hierro candente y guarniciones artesanales en el corazón de San Diego, Carabobo.",
+  tagline: "Restobar & Grill · Cortes al Carbón, Paellas, Alitas & Coctelería",
+  heroHeadline: "SABOR A LA BRASA & COCTELERÍA.",
+  heroSubheadline: "Costillares glaseados BBQ con puerro crocante, paellas marineras en sartén de hierro, alitas al sésamo y margaritas frozen en San Diego, Carabobo.",
   address: "Av. Intercomunal Don Julio Centeno, a la altura de Urb. El Remanso, San Diego, Carabobo, Venezuela",
   addressShort: "Av. Don Julio Centeno (El Remanso), San Diego",
   city: "San Diego",

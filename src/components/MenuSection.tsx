@@ -11,7 +11,7 @@ interface MenuSectionProps {
 
 export function MenuSection({ onSelectItem }: MenuSectionProps) {
   const { rate } = useBcvRate()
-  const [activeCategory, setActiveCategory] = useState<string>('cortes')
+  const [activeCategory, setActiveCategory] = useState<string>('brasas')
 
   const filteredItems = MENU_ITEMS.filter((item) => item.category === activeCategory)
   const currentCategoryObj = MENU_CATEGORIES.find((c) => c.id === activeCategory)

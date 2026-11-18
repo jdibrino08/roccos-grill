@@ -53,9 +53,9 @@ export function HeroFlyThrough({ onScrollToMenu, onOpenCart }: HeroFlyThroughPro
           className="mb-6"
         >
           <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black font-display tracking-tight leading-[0.98] uppercase">
-            <span className="block text-white">AUTÉNTICO SABOR</span>
+            <span className="block text-white">SABOR A LA BRASA</span>
             <GlassText variant="amber" className="tracking-tight" shimmer={true}>
-              A LA BRASA.
+              & COCTELERÍA.
             </GlassText>
           </h1>
         </motion.div>
