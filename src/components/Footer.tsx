@@ -15,28 +15,28 @@ const CURRENT_YEAR = new Date().getFullYear()
 
 export function Footer() {
   return (
-    <footer className="mt-20 border-t border-white/[0.1] bg-[#080504] text-stone-400">
+    <footer className="mt-20 border-t border-white/[0.1] bg-[#060404] text-stone-400">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
           {/* Brand Info */}
           <div className="space-y-4">
             <div className="flex items-center gap-2.5">
-              <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-amber-500/20 text-amber-400 border border-amber-500/30">
+              <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-red-600/20 text-red-500 border border-red-500/30 shadow-[0_0_15px_rgba(220,38,38,0.25)]">
                 <Flame className="h-5 w-5" />
               </div>
               <span className="text-xl font-black font-display text-white tracking-wider">
-                ROCCO'S <span className="text-amber-400 font-light">GRILL</span>
+                ROCCO'S <span className="text-red-500 font-light">GRILL</span>
               </span>
             </div>
             <p className="text-xs text-stone-400 leading-relaxed">
-              Auténtica experiencia parrillera en San Diego. Cortes seleccionados a la leña, hamburguesas al carbón y guarniciones criollas con entrega rápida y auto-servicio.
+              Auténtica experiencia restobar en San Diego. Cortes al fuego, paellas marineras al sartén de hierro, alitas BBQ y coctelería de autor con auto-servicio y delivery.
             </p>
             <div className="flex items-center gap-3 pt-2">
               <a
                 href={BRAND_CONFIG.instagramUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="h-8 w-8 rounded-lg bg-white/[0.05] hover:bg-amber-500/20 hover:text-amber-400 flex items-center justify-center transition-colors"
+                className="h-8 w-8 rounded-lg bg-white/[0.05] hover:bg-red-600/20 hover:text-red-400 flex items-center justify-center transition-colors"
                 aria-label="Instagram"
               >
                 <InstagramIcon className="h-4 w-4" />
@@ -56,7 +56,7 @@ export function Footer() {
           {/* Location & Directions */}
           <div className="space-y-3">
             <h4 className="text-xs font-bold uppercase tracking-wider text-white font-mono flex items-center gap-1.5">
-              <MapPin className="h-4 w-4 text-amber-400" />
+              <MapPin className="h-4 w-4 text-red-500" />
               <span>Ubicación San Diego</span>
             </h4>
             <p className="text-xs text-stone-300 leading-relaxed">
@@ -66,7 +66,7 @@ export function Footer() {
               href={BRAND_CONFIG.googleMapsUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 text-xs text-amber-400 hover:text-amber-300 underline underline-offset-4"
+              className="inline-flex items-center gap-1.5 text-xs text-red-400 hover:text-red-300 underline underline-offset-4"
             >
               <span>Abrir en Google Maps</span>
               <ExternalLink className="h-3 w-3" />
@@ -76,13 +76,13 @@ export function Footer() {
           {/* Horarios & Modalidades */}
           <div className="space-y-3">
             <h4 className="text-xs font-bold uppercase tracking-wider text-white font-mono flex items-center gap-1.5">
-              <Clock className="h-4 w-4 text-amber-400" />
+              <Clock className="h-4 w-4 text-red-500" />
               <span>Horarios de Atención</span>
             </h4>
             <p className="text-xs text-stone-300">
               {BRAND_CONFIG.schedule.days}
             </p>
-            <p className="text-xs font-mono text-amber-400/90 font-bold">
+            <p className="text-xs font-mono text-red-400/90 font-bold">
               {BRAND_CONFIG.schedule.hours}
             </p>
             <div className="pt-2 text-[11px] text-stone-400 space-y-1">
@@ -102,7 +102,7 @@ export function Footer() {
                 <span>Pago Móvil (Tasa Oficial BCV)</span>
               </div>
               <div className="flex items-center gap-2">
-                <span className="h-1.5 w-1.5 rounded-full bg-amber-400" />
+                <span className="h-1.5 w-1.5 rounded-full bg-red-500" />
                 <span>Dólares en Efectivo (Con cambio)</span>
               </div>
               <div className="flex items-center gap-2">

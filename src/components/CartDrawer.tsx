@@ -150,7 +150,7 @@ export function CartDrawer({
   return (
     <AnimatePresence>
       {isOpen && (
-        <div className="fixed inset-0 z-50 flex justify-end bg-black/75 backdrop-blur-sm">
+        <div className="fixed inset-0 z-50 flex justify-end bg-black/80 backdrop-blur-sm">
           {/* Backdrop click to close */}
           <motion.div
             initial={{ opacity: 0 }}
@@ -167,12 +167,12 @@ export function CartDrawer({
             exit={{ x: '100%' }}
             transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
             data-lenis-prevent
-            className="relative w-full max-w-lg h-full bg-[#100b08] border-l border-white/[0.12] flex flex-col shadow-[0_0_80px_rgba(0,0,0,0.9)] z-10"
+            className="relative w-full max-w-lg h-full bg-[#0a0606] border-l border-white/[0.12] flex flex-col shadow-[0_0_80px_rgba(0,0,0,0.95)] z-10"
           >
             {/* Drawer Header */}
-            <div className="p-4 sm:p-5 border-b border-white/[0.1] bg-[#140e0a] flex items-center justify-between shrink-0">
+            <div className="p-4 sm:p-5 border-b border-white/[0.1] bg-[#120808] flex items-center justify-between shrink-0">
               <div className="flex items-center gap-2.5">
-                <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-amber-500/15 border border-amber-500/30 text-amber-400">
+                <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-red-600/20 border border-red-500/30 text-red-500">
                   <ShoppingBag className="h-4.5 w-4.5" />
                 </div>
                 <div>
@@ -215,19 +215,19 @@ export function CartDrawer({
               {cart.length === 0 ? (
                 /* Empty Cart State */
                 <div className="py-16 text-center flex flex-col items-center justify-center">
-                  <div className="h-16 w-16 rounded-2xl bg-white/[0.04] border border-white/[0.08] flex items-center justify-center text-amber-400/60 mb-4">
+                  <div className="h-16 w-16 rounded-2xl bg-white/[0.04] border border-white/[0.08] flex items-center justify-center text-red-500/60 mb-4">
                     <ShoppingBag className="h-8 w-8" />
                   </div>
                   <h3 className="text-base font-bold text-white mb-1">Tu comanda está vacía</h3>
                   <p className="text-xs text-stone-400 max-w-xs mb-6 leading-relaxed">
-                    Explora nuestros cortes al carbón, smash burgers gourmet y combos familiares.
+                    Explora nuestros cortes a la brasa, paellas marineras, alitas BBQ y cócteles de autor.
                   </p>
                   <button
                     onClick={() => {
                       onClose()
                       onOpenMenu()
                     }}
-                    className="px-6 py-2.5 rounded-xl bg-gradient-to-r from-amber-500 to-orange-600 text-stone-950 font-bold text-xs tracking-wider uppercase shadow-[0_4px_20px_rgba(245,158,11,0.3)] hover:scale-105 transition-all cursor-pointer"
+                    className="px-6 py-2.5 rounded-xl bg-gradient-to-r from-red-600 to-rose-600 text-white font-bold text-xs tracking-wider uppercase shadow-[0_4px_20px_rgba(220,38,38,0.4)] hover:scale-105 transition-all cursor-pointer"
                   >
                     Ver Menú Completo
                   </button>
@@ -252,7 +252,7 @@ export function CartDrawer({
                             <h4 className="text-xs sm:text-sm font-bold text-white truncate">
                               {item.menuItem.name}
                             </h4>
-                            <span className="text-xs font-mono font-bold text-amber-400 shrink-0">
+                            <span className="text-xs font-mono font-bold text-red-400 shrink-0">
                               ${item.totalPrice}
                             </span>
                           </div>
@@ -265,14 +265,14 @@ export function CartDrawer({
                           )}
 
                           {item.specialInstructions && (
-                            <p className="text-[10px] text-amber-300/80 italic mt-0.5">
+                            <p className="text-[10px] text-red-300/80 italic mt-0.5">
                               Nota: {item.specialInstructions}
                             </p>
                           )}
 
                           {/* Qty controls */}
                           <div className="flex items-center justify-between mt-2.5 pt-2 border-t border-white/[0.05]">
-                            <div className="flex items-center gap-1.5 bg-black/40 px-2 py-0.5 rounded-lg border border-white/[0.06]">
+                            <div className="flex items-center gap-1.5 bg-black/50 px-2 py-0.5 rounded-lg border border-white/[0.08]">
                               <button
                                 onClick={() => onUpdateQuantity(item.id, item.quantity - 1)}
                                 className="text-stone-400 hover:text-white p-0.5 cursor-pointer"
@@ -307,7 +307,7 @@ export function CartDrawer({
 
                   {/* 1. Modalidad de Entrega */}
                   <div className="space-y-3 pt-2">
-                    <h3 className="text-xs font-bold uppercase tracking-wider text-amber-300 font-mono flex items-center gap-1.5">
+                    <h3 className="text-xs font-bold uppercase tracking-wider text-red-400 font-mono flex items-center gap-1.5">
                       <span>1. Modalidad de Entrega</span>
                     </h3>
 
@@ -317,7 +317,7 @@ export function CartDrawer({
                         onClick={() => setCustomer({ ...customer, deliveryMode: 'driveThru' })}
                         className={`p-3 rounded-xl border flex flex-col items-center justify-center text-center transition-all cursor-pointer ${
                           customer.deliveryMode === 'driveThru'
-                            ? 'bg-amber-500/15 border-amber-500 text-amber-400 shadow-[0_0_15px_rgba(245,158,11,0.2)]'
+                            ? 'bg-red-600/20 border-red-500 text-red-400 shadow-[0_0_15px_rgba(220,38,38,0.25)]'
                             : 'bg-white/[0.02] border-white/[0.08] text-stone-400 hover:border-white/20'
                         }`}
                       >
@@ -331,7 +331,7 @@ export function CartDrawer({
                         onClick={() => setCustomer({ ...customer, deliveryMode: 'delivery' })}
                         className={`p-3 rounded-xl border flex flex-col items-center justify-center text-center transition-all cursor-pointer ${
                           customer.deliveryMode === 'delivery'
-                            ? 'bg-amber-500/15 border-amber-500 text-amber-400 shadow-[0_0_15px_rgba(245,158,11,0.2)]'
+                            ? 'bg-red-600/20 border-red-500 text-red-400 shadow-[0_0_15px_rgba(220,38,38,0.25)]'
                             : 'bg-white/[0.02] border-white/[0.08] text-stone-400 hover:border-white/20'
                         }`}
                       >
@@ -345,7 +345,7 @@ export function CartDrawer({
                         onClick={() => setCustomer({ ...customer, deliveryMode: 'pickup' })}
                         className={`p-3 rounded-xl border flex flex-col items-center justify-center text-center transition-all cursor-pointer ${
                           customer.deliveryMode === 'pickup'
-                            ? 'bg-amber-500/15 border-amber-500 text-amber-400 shadow-[0_0_15px_rgba(245,158,11,0.2)]'
+                            ? 'bg-red-600/20 border-red-500 text-red-400 shadow-[0_0_15px_rgba(220,38,38,0.25)]'
                             : 'bg-white/[0.02] border-white/[0.08] text-stone-400 hover:border-white/20'
                         }`}
                       >
@@ -357,8 +357,8 @@ export function CartDrawer({
 
                     {/* Drive-thru extra vehicle note */}
                     {customer.deliveryMode === 'driveThru' && (
-                      <div className="p-3 rounded-xl bg-amber-500/10 border border-amber-500/20 text-xs">
-                        <label className="text-[11px] font-bold text-amber-300 block mb-1">
+                      <div className="p-3 rounded-xl bg-red-950/30 border border-red-500/30 text-xs">
+                        <label className="text-[11px] font-bold text-red-300 block mb-1">
                           🚗 Datos de tu auto (Para llevártelo a la ventana):
                         </label>
                         <input
@@ -368,7 +368,7 @@ export function CartDrawer({
                             setCustomer({ ...customer, vehicleDescription: e.target.value })
                           }
                           placeholder="Ej: Toyota Corolla gris o Ford Fiesta blanco..."
-                          className="w-full px-3 py-2 rounded-lg bg-black/50 border border-white/10 text-xs text-white focus:outline-none focus:border-amber-400"
+                          className="w-full px-3 py-2 rounded-lg bg-black/60 border border-white/10 text-xs text-white focus:outline-none focus:border-red-500"
                         />
                       </div>
                     )}
@@ -384,7 +384,7 @@ export function CartDrawer({
                           onChange={(e) =>
                             setCustomer({ ...customer, deliveryZoneId: e.target.value })
                           }
-                          className="w-full px-3 py-2 rounded-lg bg-[#140e0a] border border-white/15 text-xs text-white focus:outline-none focus:border-amber-400"
+                          className="w-full px-3 py-2 rounded-lg bg-[#140808] border border-white/15 text-xs text-white focus:outline-none focus:border-red-500"
                         >
                           {BRAND_CONFIG.services.delivery.zones.map((zone) => (
                             <option key={zone.id} value={zone.id}>
@@ -400,7 +400,7 @@ export function CartDrawer({
                             setCustomer({ ...customer, deliveryAddress: e.target.value })
                           }
                           placeholder="Urbanización, calle, casa/edificio, punto de referencia..."
-                          className="w-full px-3 py-2 rounded-lg bg-black/50 border border-white/10 text-xs text-white focus:outline-none focus:border-amber-400 mt-2"
+                          className="w-full px-3 py-2 rounded-lg bg-black/60 border border-white/10 text-xs text-white focus:outline-none focus:border-red-500 mt-2"
                         />
                       </div>
                     )}
@@ -408,7 +408,7 @@ export function CartDrawer({
 
                   {/* 2. Método de Pago */}
                   <div className="space-y-3 pt-2">
-                    <h3 className="text-xs font-bold uppercase tracking-wider text-amber-300 font-mono flex items-center gap-1.5">
+                    <h3 className="text-xs font-bold uppercase tracking-wider text-red-400 font-mono flex items-center gap-1.5">
                       <span>2. Método de Pago</span>
                     </h3>
 
@@ -418,7 +418,7 @@ export function CartDrawer({
                         onClick={() => setCustomer({ ...customer, paymentMethod: 'pagoMovil' })}
                         className={`p-2.5 rounded-xl border flex flex-col items-center justify-center text-center transition-all cursor-pointer ${
                           customer.paymentMethod === 'pagoMovil'
-                            ? 'bg-amber-500/15 border-amber-500 text-amber-400'
+                            ? 'bg-red-600/20 border-red-500 text-red-400 shadow-[0_0_15px_rgba(220,38,38,0.2)]'
                             : 'bg-white/[0.02] border-white/[0.08] text-stone-400'
                         }`}
                       >
@@ -431,7 +431,7 @@ export function CartDrawer({
                         onClick={() => setCustomer({ ...customer, paymentMethod: 'cash' })}
                         className={`p-2.5 rounded-xl border flex flex-col items-center justify-center text-center transition-all cursor-pointer ${
                           customer.paymentMethod === 'cash'
-                            ? 'bg-amber-500/15 border-amber-500 text-amber-400'
+                            ? 'bg-red-600/20 border-red-500 text-red-400 shadow-[0_0_15px_rgba(220,38,38,0.2)]'
                             : 'bg-white/[0.02] border-white/[0.08] text-stone-400'
                         }`}
                       >
@@ -444,7 +444,7 @@ export function CartDrawer({
                         onClick={() => setCustomer({ ...customer, paymentMethod: 'zelle' })}
                         className={`p-2.5 rounded-xl border flex flex-col items-center justify-center text-center transition-all cursor-pointer ${
                           customer.paymentMethod === 'zelle'
-                            ? 'bg-amber-500/15 border-amber-500 text-amber-400'
+                            ? 'bg-red-600/20 border-red-500 text-red-400 shadow-[0_0_15px_rgba(220,38,38,0.2)]'
                             : 'bg-white/[0.02] border-white/[0.08] text-stone-400'
                         }`}
                       >
@@ -455,7 +455,7 @@ export function CartDrawer({
 
                     {/* Pago Móvil Details Card */}
                     {customer.paymentMethod === 'pagoMovil' && (
-                      <div className="p-3 rounded-xl bg-emerald-950/20 border border-emerald-500/30 text-xs text-stone-300 space-y-1">
+                      <div className="p-3 rounded-xl bg-emerald-950/25 border border-emerald-500/30 text-xs text-stone-300 space-y-1">
                         <div className="flex items-center justify-between text-emerald-300 font-bold mb-1">
                           <span>Datos Pago Móvil:</span>
                           {grandTotalBs && (
@@ -488,7 +488,7 @@ export function CartDrawer({
                               onClick={() => setCustomer({ ...customer, cashBill: bill })}
                               className={`py-1.5 rounded-lg border text-xs font-mono font-bold transition-all ${
                                 customer.cashBill === bill
-                                  ? 'bg-amber-500 text-stone-950 border-amber-500'
+                                  ? 'bg-red-600 text-white border-red-500'
                                   : 'bg-white/[0.05] border-white/10 text-stone-300'
                               }`}
                             >
@@ -515,7 +515,7 @@ export function CartDrawer({
 
                   {/* 3. Datos del Cliente */}
                   <div className="space-y-2 pt-2">
-                    <h3 className="text-xs font-bold uppercase tracking-wider text-amber-300 font-mono">
+                    <h3 className="text-xs font-bold uppercase tracking-wider text-red-400 font-mono">
                       3. Tus Datos
                     </h3>
                     <div className="grid grid-cols-2 gap-2">
@@ -524,14 +524,14 @@ export function CartDrawer({
                         value={customer.name}
                         onChange={(e) => setCustomer({ ...customer, name: e.target.value })}
                         placeholder="Tu Nombre completo"
-                        className="w-full px-3 py-2 rounded-xl bg-white/[0.04] border border-white/10 text-xs text-white placeholder-stone-500 focus:outline-none focus:border-amber-400"
+                        className="w-full px-3 py-2 rounded-xl bg-white/[0.04] border border-white/10 text-xs text-white placeholder-stone-500 focus:outline-none focus:border-red-500"
                       />
                       <input
                         type="tel"
                         value={customer.phone}
                         onChange={(e) => setCustomer({ ...customer, phone: e.target.value })}
                         placeholder="Teléfono / WhatsApp"
-                        className="w-full px-3 py-2 rounded-xl bg-white/[0.04] border border-white/10 text-xs text-white placeholder-stone-500 focus:outline-none focus:border-amber-400"
+                        className="w-full px-3 py-2 rounded-xl bg-white/[0.04] border border-white/10 text-xs text-white placeholder-stone-500 focus:outline-none focus:border-red-500"
                       />
                     </div>
                   </div>
@@ -541,7 +541,7 @@ export function CartDrawer({
 
             {/* Drawer Footer with Totals & WhatsApp CTA */}
             {cart.length > 0 && (
-              <div className="p-4 sm:p-5 border-t border-white/[0.1] bg-[#0c0907]/95 shrink-0 space-y-3">
+              <div className="p-4 sm:p-5 border-t border-white/[0.1] bg-[#080505]/95 shrink-0 space-y-3">
                 <div className="space-y-1.5 text-xs text-stone-300">
                   <div className="flex justify-between">
                     <span>Subtotal:</span>
@@ -550,13 +550,13 @@ export function CartDrawer({
                   {deliveryFee > 0 && (
                     <div className="flex justify-between">
                       <span>Delivery:</span>
-                      <span className="font-mono font-bold text-amber-400">+${deliveryFee}</span>
+                      <span className="font-mono font-bold text-red-400">+${deliveryFee}</span>
                     </div>
                   )}
                   <div className="flex justify-between text-base font-bold text-white pt-1 border-t border-white/[0.08]">
                     <span>Total a Pagar:</span>
                     <div className="text-right">
-                      <div className="font-mono text-amber-400">${grandTotalUsd} USD</div>
+                      <div className="font-mono text-red-400 font-bold">${grandTotalUsd} USD</div>
                       {grandTotalBs && (
                         <div className="text-[11px] font-mono text-emerald-400 font-normal">
                           {grandTotalBs}

@@ -2,7 +2,7 @@ import React from 'react'
 
 interface GlassTextProps {
   children: React.ReactNode
-  variant?: 'crystal' | 'amber'
+  variant?: 'crystal' | 'red'
   className?: string
   as?: 'span' | 'h1' | 'h2' | 'h3' | 'div'
   shimmer?: boolean
@@ -15,7 +15,7 @@ export function GlassText({
   as: Component = 'span',
   shimmer = true,
 }: GlassTextProps) {
-  const baseClass = variant === 'amber' ? 'glass-text-amber' : 'glass-text'
+  const baseClass = variant === 'red' ? 'glass-text-red' : 'glass-text'
 
   return (
     <Component className={`relative inline-block ${className}`}>

@@ -22,7 +22,8 @@ function ItemCustomizerDialog({
 }) {
   const { rate } = useBcvRate()
   const [quantity, setQuantity] = useState(1)
-  // Initialize required single-choice options (e.g. doneness) directly in state
+
+  // Initialize required single-choice options directly in state
   const [selectedOptions, setSelectedOptions] = useState<Record<string, MenuItemOption[]>>(() => {
     const initial: Record<string, MenuItemOption[]> = {}
     item.optionGroups?.forEach((group) => {
@@ -139,16 +140,16 @@ function ItemCustomizerDialog({
         exit={{ opacity: 0, y: 40 }}
         transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
         data-lenis-prevent
-        className="w-full max-w-xl max-h-[90vh] sm:max-h-[85vh] flex flex-col rounded-t-3xl sm:rounded-3xl bg-[#120c08] border border-white/[0.14] shadow-[0_25px_60px_rgba(0,0,0,0.8)] overflow-hidden"
+        className="w-full max-w-xl max-h-[90vh] sm:max-h-[85vh] flex flex-col rounded-t-3xl sm:rounded-3xl bg-[#0e0808] border border-white/[0.14] shadow-[0_25px_60px_rgba(0,0,0,0.85)] overflow-hidden"
       >
         {/* Header with image preview */}
         <div className="relative h-48 sm:h-56 shrink-0 overflow-hidden">
           <img
             src={item.imageUrl}
             alt={item.name}
-            className="w-full h-full object-cover filter brightness-[0.82] contrast-[1.08]"
+            className="w-full h-full object-cover filter brightness-[0.82] contrast-[1.1]"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#120c08] via-[#120c08]/40 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#0e0808] via-[#0e0808]/40 to-transparent" />
 
           {/* Close Button */}
           <button
@@ -159,9 +160,9 @@ function ItemCustomizerDialog({
             <X className="h-5 w-5" />
           </button>
 
-          {/* Badge */}
+          {/* Badge (Fiery Red) */}
           {item.badge && (
-            <div className="absolute top-4 left-4 inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-500/90 text-stone-950 font-bold text-xs uppercase tracking-wider font-mono">
+            <div className="absolute top-4 left-4 inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-red-600/95 text-white font-bold text-xs uppercase tracking-wider font-mono shadow-[0_2px_12px_rgba(220,38,38,0.5)] border border-red-400/30">
               <Flame className="h-3 w-3" />
               <span>{item.badge}</span>
             </div>
@@ -175,13 +176,13 @@ function ItemCustomizerDialog({
             <div className="flex items-center gap-3 text-xs text-stone-300 mt-1">
               {item.servings && (
                 <span className="flex items-center gap-1">
-                  <Users className="h-3.5 w-3.5 text-amber-400" />
+                  <Users className="h-3.5 w-3.5 text-red-400" />
                   {item.servings}
                 </span>
               )}
               {item.cookingTime && (
                 <span className="flex items-center gap-1">
-                  <Clock className="h-3.5 w-3.5 text-amber-400" />
+                  <Clock className="h-3.5 w-3.5 text-red-400" />
                   {item.cookingTime}
                 </span>
               )}
@@ -202,7 +203,7 @@ function ItemCustomizerDialog({
             return (
               <div key={group.id} className="space-y-3">
                 <div className="flex items-center justify-between border-b border-white/[0.08] pb-2">
-                  <h4 className="text-xs font-bold uppercase tracking-wider text-amber-300 font-mono">
+                  <h4 className="text-xs font-bold uppercase tracking-wider text-red-400 font-mono">
                     {group.name}
                   </h4>
                   <span className="text-[11px] text-stone-400 font-mono">
@@ -226,7 +227,7 @@ function ItemCustomizerDialog({
                         }
                         className={`w-full flex items-center justify-between p-3 rounded-xl border transition-all cursor-pointer text-left ${
                           isChecked
-                            ? 'bg-amber-500/15 border-amber-500/60 text-white'
+                            ? 'bg-red-600/20 border-red-500 text-white shadow-[0_0_12px_rgba(220,38,38,0.2)]'
                             : 'bg-white/[0.03] border-white/[0.08] text-stone-300 hover:border-white/20'
                         }`}
                       >
@@ -234,7 +235,7 @@ function ItemCustomizerDialog({
                           <div
                             className={`h-4 w-4 rounded-md flex items-center justify-center border transition-colors ${
                               isChecked
-                                ? 'bg-amber-500 border-amber-500 text-stone-950'
+                                ? 'bg-red-600 border-red-600 text-white'
                                 : 'border-stone-500'
                             }`}
                           >
@@ -243,7 +244,7 @@ function ItemCustomizerDialog({
                           <span className="text-xs sm:text-sm font-medium">{option.name}</span>
                         </div>
                         {option.price > 0 && (
-                          <span className="text-xs font-mono font-bold text-amber-400">
+                          <span className="text-xs font-mono font-bold text-red-400">
                             +${option.price}
                           </span>
                         )}
@@ -264,14 +265,14 @@ function ItemCustomizerDialog({
               rows={2}
               value={instructions}
               onChange={(e) => setInstructions(e.target.value)}
-              placeholder="Ej: Sin sal en los tostones, chimichurri aparte..."
-              className="w-full px-3.5 py-2.5 rounded-xl bg-white/[0.04] border border-white/[0.1] text-xs text-white placeholder-stone-500 focus:outline-none focus:border-amber-400 transition-colors resize-none"
+              placeholder="Ej: Salsa aparte, término exacto, sin sal añadida..."
+              className="w-full px-3.5 py-2.5 rounded-xl bg-white/[0.04] border border-white/[0.1] text-xs text-white placeholder-stone-500 focus:outline-none focus:border-red-500 transition-colors resize-none"
             />
           </div>
         </div>
 
-        {/* Footer with Quantity Counter & Add CTA */}
-        <div className="p-4 sm:p-5 border-t border-white/[0.1] bg-[#0c0907]/90 flex items-center justify-between gap-4 shrink-0">
+        {/* Footer with Quantity Counter & Add CTA (Fiery Red) */}
+        <div className="p-4 sm:p-5 border-t border-white/[0.1] bg-[#080606]/95 flex items-center justify-between gap-4 shrink-0">
           {/* Quantity Controls */}
           <div className="flex items-center gap-2 px-2.5 py-1.5 rounded-xl bg-white/[0.05] border border-white/[0.1]">
             <button
@@ -298,13 +299,13 @@ function ItemCustomizerDialog({
           <button
             onClick={handleConfirm}
             disabled={!isSatisfied}
-            className="flex-1 py-3 px-5 rounded-xl bg-gradient-to-r from-amber-500 via-orange-500 to-amber-600 text-stone-950 font-bold text-xs sm:text-sm tracking-wide shadow-[0_4px_24px_rgba(245,158,11,0.35)] hover:shadow-[0_6px_30px_rgba(245,158,11,0.5)] disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer transition-all flex items-center justify-between"
+            className="flex-1 py-3 px-5 rounded-xl bg-gradient-to-r from-red-600 via-rose-600 to-red-700 text-white font-bold text-xs sm:text-sm tracking-wide shadow-[0_4px_24px_rgba(220,38,38,0.4)] hover:shadow-[0_6px_30px_rgba(220,38,38,0.6)] disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer transition-all flex items-center justify-between"
           >
             <span>Agregar al Pedido</span>
             <div className="flex flex-col items-end">
               <span className="font-mono font-black">${finalPrice}</span>
               {finalPriceBs && (
-                <span className="text-[10px] font-mono text-stone-900/80 -mt-0.5">
+                <span className="text-[10px] font-mono text-red-200/90 -mt-0.5">
                   {finalPriceBs}
                 </span>
               )}
