@@ -1,0 +1,156 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    /* Rocco's Grill Charcoal Hearth & Mesquite Ember Palette */
+    --color-charcoal: #0c0907;
+    --color-hearth: #17100b;
+    --color-ember: #ea580c;
+    --color-flame: #f97316;
+    --color-gold: #f59e0b;
+    --color-bone: #fbf8f2;
+    --color-smoke: #a8a29e;
+    --font-display: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-serif: 'Instrument Serif', Georgia, serif;
+    --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+  }
+
+  html.lenis, html.lenis body {
+    height: auto;
+  }
+
+  .lenis.lenis-smooth {
+    scroll-behavior: auto !important;
+  }
+
+  .lenis.lenis-smooth [data-lenis-prevent] {
+    overscroll-behavior: contain;
+  }
+
+  .lenis.lenis-stopped {
+    overflow: hidden;
+  }
+
+  .lenis.lenis-scrolling iframe {
+    pointer-events: none;
+  }
+
+  body {
+    background-color: var(--color-charcoal);
+    color: var(--color-bone);
+    font-family: var(--font-display);
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  .font-mono {
+    font-family: var(--font-mono);
+  }
+
+  .font-serif-luxury {
+    font-family: var(--font-serif);
+  }
+
+  ::selection {
+    background-color: rgba(234, 88, 12, 0.35);
+    color: #ffffff;
+  }
+}
+
+/* ============================================================================
+   OPTICAL LIQUID GLASS TYPOGRAPHY & SURFACES (ROCCO'S GRILL)
+   ============================================================================ */
+
+@keyframes glass-light-sweep {
+  0% {
+    background-position: -180% 0%;
+  }
+  100% {
+    background-position: 220% 0%;
+  }
+}
+
+.glass-text {
+  font-family: var(--font-display);
+  background: linear-gradient(
+    180deg,
+    #fffdf9 0%,
+    rgba(255, 250, 240, 0.95) 58%,
+    rgba(245, 228, 200, 0.65) 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+.glass-text-amber {
+  font-family: var(--font-display);
+  background: linear-gradient(
+    180deg,
+    #fffbeb 0%,
+    #fbbf24 52%,
+    #ea580c 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+.glass-sheen-layer {
+  background: linear-gradient(
+    115deg,
+    transparent 30%,
+    rgba(255, 255, 255, 0) 44%,
+    rgba(255, 248, 230, 0.32) 50%,
+    rgba(255, 255, 255, 0) 56%,
+    transparent 70%
+  );
+  background-size: 260% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  animation: glass-light-sweep 9s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .glass-sheen-layer {
+    animation: none;
+    opacity: 0;
+  }
+}
+
+/* Mesquite-Smoked Frosted Glass Panel */
+.glass-panel {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 244, 230, 0.07) 0%,
+    rgba(26, 17, 12, 0.6) 60%,
+    rgba(255, 235, 205, 0.04) 100%
+  );
+  backdrop-filter: blur(24px) saturate(150%);
+  -webkit-backdrop-filter: blur(24px) saturate(150%);
+  border: 1px solid rgba(255, 235, 205, 0.12);
+  box-shadow:
+    inset 0 1px 0 0 rgba(255, 245, 230, 0.2),
+    0 20px 56px rgba(0, 0, 0, 0.6);
+}
+
+/* Custom Scrollbar for drawers */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: rgba(12, 9, 7, 0.8);
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(245, 158, 11, 0.4);
+}
