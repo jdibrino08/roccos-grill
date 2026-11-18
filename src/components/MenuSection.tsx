@@ -18,7 +18,10 @@ export function MenuSection({ onSelectItem }: MenuSectionProps) {
   const currentCategoryObj = MENU_CATEGORIES.find((c) => c.id === activeCategory)
 
   return (
-    <section id="menu-section" className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+    <section id="menu-section" className="relative py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto overflow-hidden">
+      {/* Ambient Culinary Mesh & Warm Degradados de Fondo */}
+      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[750px] h-[420px] bg-gradient-to-b from-amber-500/[0.08] via-orange-600/[0.05] to-transparent rounded-full blur-[140px] pointer-events-none" />
+      <div className="absolute bottom-20 right-10 w-[520px] h-[360px] bg-gradient-to-t from-amber-600/[0.06] to-transparent rounded-full blur-[130px] pointer-events-none" />
       {/* Section Header */}
       <div className="text-center max-w-2xl mx-auto mb-10">
         <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-amber-400/10 border border-amber-400/25 text-amber-400 text-xs font-mono uppercase tracking-wider mb-3 shadow-[0_0_15px_rgba(245,158,11,0.15)]">
