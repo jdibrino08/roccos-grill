@@ -2,12 +2,13 @@
 
 @layer base {
   :root {
-    /* Rocco's Grill: Classic Steakhouse Palette (Fiery Red & Pure Obsidian Charcoal) */
-    --color-charcoal: #080606;
-    --color-hearth: #120909;
-    --color-fire: #dc2626;
-    --color-crimson: #b91c1c;
-    --color-ember: #ef4444;
+    /* Rocco's Grill: Luxury Restobar & Steakhouse Palette (Champagne Gold & Smoked Obsidian) */
+    --color-charcoal: #09090b;
+    --color-hearth: #121215;
+    --color-gold: #d4af37;
+    --color-gold-light: #fef08a;
+    --color-champagne: #fae8b2;
+    --color-bronze: #997a38;
     --color-bone: #fafafa;
     --color-smoke: #a1a1aa;
     --font-display: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
@@ -53,13 +54,13 @@
   }
 
   ::selection {
-    background-color: rgba(220, 38, 38, 0.4);
+    background-color: rgba(212, 175, 55, 0.35);
     color: #ffffff;
   }
 }
 
 /* ============================================================================
-   OPTICAL LIQUID GLASS TYPOGRAPHY & SURFACES (FIERY RED & PURE CARBON)
+   OPTICAL LIQUID GLASS TYPOGRAPHY & SURFACES (CHAMPAGNE GOLD & OBSIDIAN)
    ============================================================================ */
 
 @keyframes glass-light-sweep {
@@ -77,7 +78,7 @@
     180deg,
     #ffffff 0%,
     rgba(255, 255, 255, 0.96) 58%,
-    rgba(254, 202, 202, 0.65) 100%
+    rgba(250, 232, 178, 0.65) 100%
   );
   -webkit-background-clip: text;
   background-clip: text;
@@ -85,14 +86,14 @@
   color: transparent;
 }
 
-.glass-text-red {
+.glass-text-gold {
   font-family: var(--font-display);
   background: linear-gradient(
     180deg,
     #ffffff 0%,
-    #f87171 42%,
-    #ef4444 68%,
-    #b91c1c 100%
+    #fef08a 38%,
+    #d4af37 72%,
+    #997a38 100%
   );
   -webkit-background-clip: text;
   background-clip: text;
@@ -105,7 +106,7 @@
     115deg,
     transparent 30%,
     rgba(255, 255, 255, 0) 44%,
-    rgba(254, 226, 226, 0.35) 50%,
+    rgba(254, 240, 138, 0.32) 50%,
     rgba(255, 255, 255, 0) 56%,
     transparent 70%
   );
@@ -124,19 +125,19 @@
   }
 }
 
-/* Obsidian Steakhouse Glass Panel */
+/* Smoked Obsidian Glass Panel */
 .glass-panel {
   background: linear-gradient(
     135deg,
     rgba(255, 255, 255, 0.05) 0%,
-    rgba(22, 10, 10, 0.7) 60%,
-    rgba(220, 38, 38, 0.04) 100%
+    rgba(18, 18, 22, 0.72) 60%,
+    rgba(212, 175, 55, 0.04) 100%
   );
   backdrop-filter: blur(24px) saturate(140%);
   -webkit-backdrop-filter: blur(24px) saturate(140%);
   border: 1px solid rgba(255, 255, 255, 0.1);
   box-shadow:
-    inset 0 1px 0 0 rgba(255, 255, 255, 0.15),
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.16),
     0 20px 56px rgba(0, 0, 0, 0.7);
 }
 
@@ -146,12 +147,12 @@
   height: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: rgba(8, 6, 6, 0.8);
+  background: rgba(9, 9, 11, 0.8);
 }
 ::-webkit-scrollbar-thumb {
   background: rgba(255, 255, 255, 0.15);
   border-radius: 9999px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(220, 38, 38, 0.6);
+  background: rgba(212, 175, 55, 0.5);
 }

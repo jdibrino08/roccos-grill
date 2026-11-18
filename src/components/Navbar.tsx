@@ -16,22 +16,22 @@ export function Navbar({ cartCount, onOpenCart, onScrollToMenu }: NavbarProps) {
     <header className="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
       {/* Top Glass Surface with Blur & Specular Border */}
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-3">
-        <nav className="glass-panel rounded-2xl px-4 py-2.5 sm:px-6 flex items-center justify-between border border-white/[0.12] bg-[#0c0808]/85 backdrop-blur-2xl shadow-[0_12px_40px_rgba(0,0,0,0.7),inset_0_1px_0_rgba(255,255,255,0.15)]">
+        <nav className="glass-panel rounded-2xl px-4 py-2.5 sm:px-6 flex items-center justify-between border border-white/[0.12] bg-[#09090b]/85 backdrop-blur-2xl shadow-[0_12px_40px_rgba(0,0,0,0.7),inset_0_1px_0_rgba(255,255,255,0.15)]">
           {/* Brand Mark */}
           <button
             onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
             className="flex items-center gap-3 text-left group cursor-pointer focus:outline-none"
             aria-label="Ir al inicio"
           >
-            <div className="relative flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-red-600/30 via-rose-700/20 to-transparent border border-red-500/40 shadow-[0_0_20px_rgba(220,38,38,0.3)] group-hover:border-red-400 transition-colors">
-              <Flame className="h-5 w-5 text-red-500 group-hover:scale-110 transition-transform duration-300" />
+            <div className="relative flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-[#d4af37]/25 via-[#997a38]/15 to-transparent border border-[#d4af37]/35 shadow-[0_0_20px_rgba(212,175,55,0.2)] group-hover:border-[#d4af37] transition-colors">
+              <Flame className="h-5 w-5 text-[#d4af37] group-hover:scale-110 transition-transform duration-300" />
             </div>
             <div className="flex flex-col">
               <span className="font-extrabold tracking-wider text-base sm:text-lg text-white font-display leading-tight flex items-center gap-1.5">
-                ROCCO'S <span className="text-red-500 font-light">GRILL</span>
+                ROCCO'S <span className="text-[#d4af37] font-light">GRILL</span>
               </span>
-              <span className="text-[10px] tracking-wider text-red-300/60 uppercase font-mono">
-                San Diego · Steakhouse & Brasas
+              <span className="text-[10px] tracking-wider text-[#fae8b2]/60 uppercase font-mono">
+                San Diego · Restobar & Steakhouse
               </span>
             </div>
           </button>
@@ -43,10 +43,10 @@ export function Navbar({ cartCount, onOpenCart, onScrollToMenu }: NavbarProps) {
               href={BRAND_CONFIG.googleMapsUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/[0.04] border border-white/[0.08] hover:border-red-500/40 text-xs text-stone-300 hover:text-white transition-all"
+              className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/[0.04] border border-white/[0.08] hover:border-[#d4af37]/40 text-xs text-stone-300 hover:text-white transition-all"
               title="Ver ubicación en Google Maps"
             >
-              <MapPin className="h-3.5 w-3.5 text-red-500" />
+              <MapPin className="h-3.5 w-3.5 text-[#d4af37]" />
               <span>Av. Don Julio Centeno</span>
             </a>
 
@@ -79,13 +79,13 @@ export function Navbar({ cartCount, onOpenCart, onScrollToMenu }: NavbarProps) {
               Ver Carta
             </button>
 
-            {/* Cart Button with Animated Counter (Fiery Red) */}
+            {/* Cart Button with Animated Counter (Champagne Gold) */}
             <button
               onClick={onOpenCart}
-              className="relative flex items-center gap-2 px-4 py-2 sm:px-4.5 sm:py-2.5 rounded-xl bg-gradient-to-r from-red-600 via-rose-600 to-red-700 text-white font-bold text-xs sm:text-sm tracking-wide shadow-[0_4px_24px_rgba(220,38,38,0.4)] hover:shadow-[0_6px_30px_rgba(220,38,38,0.6)] hover:scale-[1.02] active:scale-[0.98] transition-all cursor-pointer"
+              className="relative flex items-center gap-2 px-4 py-2 sm:px-4.5 sm:py-2.5 rounded-xl bg-gradient-to-r from-[#d4af37] via-[#e6c775] to-[#c59b27] text-stone-950 font-bold text-xs sm:text-sm tracking-wide shadow-[0_4px_24px_rgba(212,175,55,0.3)] hover:shadow-[0_6px_30px_rgba(212,175,55,0.45)] hover:scale-[1.02] active:scale-[0.98] transition-all cursor-pointer"
               aria-label={`Ver pedido con ${cartCount} productos`}
             >
-              <ShoppingBag className="h-4 w-4 text-white" />
+              <ShoppingBag className="h-4 w-4 text-stone-950" />
               <span className="hidden xs:inline">Mi Pedido</span>
               <AnimatePresence>
                 {cartCount > 0 && (
@@ -93,7 +93,7 @@ export function Navbar({ cartCount, onOpenCart, onScrollToMenu }: NavbarProps) {
                     initial={{ scale: 0, opacity: 0 }}
                     animate={{ scale: 1, opacity: 1 }}
                     exit={{ scale: 0, opacity: 0 }}
-                    className="flex h-5 min-w-5 px-1 items-center justify-center rounded-full bg-stone-950 text-red-400 text-[11px] font-mono font-black"
+                    className="flex h-5 min-w-5 px-1 items-center justify-center rounded-full bg-stone-950 text-[#d4af37] text-[11px] font-mono font-black"
                   >
                     {cartCount}
                   </motion.span>

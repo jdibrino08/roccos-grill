@@ -194,12 +194,12 @@ export function CartDrawer({
             exit={{ x: '100%' }}
             transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
             data-lenis-prevent
-            className="relative w-full max-w-lg h-full bg-[#0a0606] border-l border-white/[0.12] flex flex-col shadow-[0_0_80px_rgba(0,0,0,0.95)] z-10"
+            className="relative w-full max-w-lg h-full bg-[#09090b] border-l border-white/[0.12] flex flex-col shadow-[0_0_80px_rgba(0,0,0,0.95)] z-10"
           >
             {/* Drawer Header */}
-            <div className="p-4 sm:p-5 border-b border-white/[0.1] bg-[#120808] flex items-center justify-between shrink-0">
+            <div className="p-4 sm:p-5 border-b border-white/[0.1] bg-[#111115] flex items-center justify-between shrink-0">
               <div className="flex items-center gap-2.5">
-                <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-red-600/20 border border-red-500/30 text-red-500">
+                <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-[#d4af37]/15 border border-[#d4af37]/30 text-[#d4af37]">
                   <ShoppingBag className="h-4.5 w-4.5" />
                 </div>
                 <div>
@@ -242,7 +242,7 @@ export function CartDrawer({
               {cart.length === 0 ? (
                 /* Empty Cart State */
                 <div className="py-16 text-center flex flex-col items-center justify-center">
-                  <div className="h-16 w-16 rounded-2xl bg-white/[0.04] border border-white/[0.08] flex items-center justify-center text-red-500/60 mb-4">
+                  <div className="h-16 w-16 rounded-2xl bg-white/[0.04] border border-white/[0.08] flex items-center justify-center text-[#d4af37]/60 mb-4">
                     <ShoppingBag className="h-8 w-8" />
                   </div>
                   <h3 className="text-base font-bold text-white mb-1">Tu comanda está vacía</h3>
@@ -254,7 +254,7 @@ export function CartDrawer({
                       onClose()
                       onOpenMenu()
                     }}
-                    className="px-6 py-2.5 rounded-xl bg-gradient-to-r from-red-600 to-rose-600 text-white font-bold text-xs tracking-wider uppercase shadow-[0_4px_20px_rgba(220,38,38,0.4)] hover:scale-105 transition-all cursor-pointer"
+                    className="px-6 py-2.5 rounded-xl bg-gradient-to-r from-[#d4af37] via-[#e6c775] to-[#c59b27] text-stone-950 font-bold text-xs tracking-wider uppercase shadow-[0_4px_20px_rgba(212,175,55,0.3)] hover:scale-105 transition-all cursor-pointer"
                   >
                     Ver Menú Completo
                   </button>
@@ -279,7 +279,7 @@ export function CartDrawer({
                             <h4 className="text-xs sm:text-sm font-bold text-white truncate">
                               {item.menuItem.name}
                             </h4>
-                            <span className="text-xs font-mono font-bold text-red-400 shrink-0">
+                            <span className="text-xs font-mono font-bold text-[#d4af37] shrink-0">
                               ${item.totalPrice}
                             </span>
                           </div>
@@ -292,7 +292,7 @@ export function CartDrawer({
                           )}
 
                           {item.specialInstructions && (
-                            <p className="text-[10px] text-red-300/80 italic mt-0.5">
+                            <p className="text-[10px] text-[#fae8b2]/80 italic mt-0.5">
                               Nota: {item.specialInstructions}
                             </p>
                           )}
@@ -334,7 +334,7 @@ export function CartDrawer({
 
                   {/* 1. Modalidad de Entrega */}
                   <div className="space-y-3 pt-2">
-                    <h3 className="text-xs font-bold uppercase tracking-wider text-red-400 font-mono flex items-center gap-1.5">
+                    <h3 className="text-xs font-bold uppercase tracking-wider text-[#d4af37] font-mono flex items-center gap-1.5">
                       <span>1. Modalidad de Entrega</span>
                     </h3>
 
@@ -344,7 +344,7 @@ export function CartDrawer({
                         onClick={() => setCustomer({ ...customer, deliveryMode: 'driveThru' })}
                         className={`p-3 rounded-xl border flex flex-col items-center justify-center text-center transition-all cursor-pointer ${
                           customer.deliveryMode === 'driveThru'
-                            ? 'bg-red-600/20 border-red-500 text-red-400 shadow-[0_0_15px_rgba(220,38,38,0.25)]'
+                            ? 'bg-[#d4af37]/15 border-[#d4af37] text-[#d4af37] shadow-[0_0_15px_rgba(212,175,55,0.2)]'
                             : 'bg-white/[0.02] border-white/[0.08] text-stone-400 hover:border-white/20'
                         }`}
                       >
@@ -358,7 +358,7 @@ export function CartDrawer({
                         onClick={() => setCustomer({ ...customer, deliveryMode: 'delivery' })}
                         className={`p-3 rounded-xl border flex flex-col items-center justify-center text-center transition-all cursor-pointer ${
                           customer.deliveryMode === 'delivery'
-                            ? 'bg-red-600/20 border-red-500 text-red-400 shadow-[0_0_15px_rgba(220,38,38,0.25)]'
+                            ? 'bg-[#d4af37]/15 border-[#d4af37] text-[#d4af37] shadow-[0_0_15px_rgba(212,175,55,0.2)]'
                             : 'bg-white/[0.02] border-white/[0.08] text-stone-400 hover:border-white/20'
                         }`}
                       >
@@ -372,7 +372,7 @@ export function CartDrawer({
                         onClick={() => setCustomer({ ...customer, deliveryMode: 'pickup' })}
                         className={`p-3 rounded-xl border flex flex-col items-center justify-center text-center transition-all cursor-pointer ${
                           customer.deliveryMode === 'pickup'
-                            ? 'bg-red-600/20 border-red-500 text-red-400 shadow-[0_0_15px_rgba(220,38,38,0.25)]'
+                            ? 'bg-[#d4af37]/15 border-[#d4af37] text-[#d4af37] shadow-[0_0_15px_rgba(212,175,55,0.2)]'
                             : 'bg-white/[0.02] border-white/[0.08] text-stone-400 hover:border-white/20'
                         }`}
                       >
@@ -384,9 +384,9 @@ export function CartDrawer({
 
                     {/* Drive-thru extra vehicle note (Zero raw emojis in UI, ERR-01 fix) */}
                     {customer.deliveryMode === 'driveThru' && (
-                      <div className="p-3 rounded-xl bg-red-950/30 border border-red-500/30 text-xs">
-                        <label className="text-[11px] font-bold text-red-300 flex items-center mb-1">
-                          <Car className="h-3.5 w-3.5 text-red-400 inline mr-1.5" />
+                      <div className="p-3 rounded-xl bg-[#d4af37]/10 border border-[#d4af37]/25 text-xs">
+                        <label className="text-[11px] font-bold text-[#fae8b2] flex items-center mb-1">
+                          <Car className="h-3.5 w-3.5 text-[#d4af37] inline mr-1.5" />
                           <span>Datos de tu auto (Para llevártelo a la ventana):</span>
                         </label>
                         <input
@@ -396,7 +396,7 @@ export function CartDrawer({
                             setCustomer({ ...customer, vehicleDescription: e.target.value })
                           }
                           placeholder="Ej: Toyota Corolla gris o Ford Fiesta blanco..."
-                          className="w-full px-3 py-2 rounded-lg bg-black/60 border border-white/10 text-xs text-white focus:outline-none focus:border-red-500"
+                          className="w-full px-3 py-2 rounded-lg bg-black/60 border border-white/10 text-xs text-white focus:outline-none focus:border-[#d4af37]"
                         />
                       </div>
                     )}
@@ -412,7 +412,7 @@ export function CartDrawer({
                           onChange={(e) =>
                             setCustomer({ ...customer, deliveryZoneId: e.target.value })
                           }
-                          className="w-full px-3 py-2 rounded-lg bg-[#140808] border border-white/15 text-xs text-white focus:outline-none focus:border-red-500"
+                          className="w-full px-3 py-2 rounded-lg bg-[#141418] border border-white/15 text-xs text-white focus:outline-none focus:border-[#d4af37]"
                         >
                           {BRAND_CONFIG.services.delivery.zones.map((zone) => (
                             <option key={zone.id} value={zone.id}>
@@ -428,7 +428,7 @@ export function CartDrawer({
                             setCustomer({ ...customer, deliveryAddress: e.target.value })
                           }
                           placeholder="Urbanización, calle, casa/edificio, punto de referencia..."
-                          className="w-full px-3 py-2 rounded-lg bg-black/60 border border-white/10 text-xs text-white focus:outline-none focus:border-red-500 mt-2"
+                          className="w-full px-3 py-2 rounded-lg bg-black/60 border border-white/10 text-xs text-white focus:outline-none focus:border-[#d4af37] mt-2"
                         />
                       </div>
                     )}
@@ -436,7 +436,7 @@ export function CartDrawer({
 
                   {/* 2. Método de Pago */}
                   <div className="space-y-3 pt-2">
-                    <h3 className="text-xs font-bold uppercase tracking-wider text-red-400 font-mono flex items-center gap-1.5">
+                    <h3 className="text-xs font-bold uppercase tracking-wider text-[#d4af37] font-mono flex items-center gap-1.5">
                       <span>2. Método de Pago</span>
                     </h3>
 
@@ -446,7 +446,7 @@ export function CartDrawer({
                         onClick={() => setCustomer({ ...customer, paymentMethod: 'pagoMovil' })}
                         className={`p-2.5 rounded-xl border flex flex-col items-center justify-center text-center transition-all cursor-pointer ${
                           customer.paymentMethod === 'pagoMovil'
-                            ? 'bg-red-600/20 border-red-500 text-red-400 shadow-[0_0_15px_rgba(220,38,38,0.2)]'
+                            ? 'bg-[#d4af37]/15 border-[#d4af37] text-[#d4af37] shadow-[0_0_15px_rgba(212,175,55,0.2)]'
                             : 'bg-white/[0.02] border-white/[0.08] text-stone-400'
                         }`}
                       >
@@ -459,7 +459,7 @@ export function CartDrawer({
                         onClick={() => setCustomer({ ...customer, paymentMethod: 'cash' })}
                         className={`p-2.5 rounded-xl border flex flex-col items-center justify-center text-center transition-all cursor-pointer ${
                           customer.paymentMethod === 'cash'
-                            ? 'bg-red-600/20 border-red-500 text-red-400 shadow-[0_0_15px_rgba(220,38,38,0.2)]'
+                            ? 'bg-[#d4af37]/15 border-[#d4af37] text-[#d4af37] shadow-[0_0_15px_rgba(212,175,55,0.2)]'
                             : 'bg-white/[0.02] border-white/[0.08] text-stone-400'
                         }`}
                       >
@@ -472,7 +472,7 @@ export function CartDrawer({
                         onClick={() => setCustomer({ ...customer, paymentMethod: 'zelle' })}
                         className={`p-2.5 rounded-xl border flex flex-col items-center justify-center text-center transition-all cursor-pointer ${
                           customer.paymentMethod === 'zelle'
-                            ? 'bg-red-600/20 border-red-500 text-red-400 shadow-[0_0_15px_rgba(220,38,38,0.2)]'
+                            ? 'bg-[#d4af37]/15 border-[#d4af37] text-[#d4af37] shadow-[0_0_15px_rgba(212,175,55,0.2)]'
                             : 'bg-white/[0.02] border-white/[0.08] text-stone-400'
                         }`}
                       >
@@ -533,7 +533,7 @@ export function CartDrawer({
                               onClick={() => setCustomer({ ...customer, cashBill: bill })}
                               className={`py-1.5 rounded-lg border text-xs font-mono font-bold transition-all ${
                                 customer.cashBill === bill
-                                  ? 'bg-red-600 text-white border-red-500'
+                                  ? 'bg-[#d4af37] text-stone-950 font-bold border-[#d4af37]'
                                   : 'bg-white/[0.05] border-white/10 text-stone-300'
                               }`}
                             >
@@ -560,7 +560,7 @@ export function CartDrawer({
 
                   {/* 3. Datos del Cliente */}
                   <div className="space-y-2 pt-2">
-                    <h3 className="text-xs font-bold uppercase tracking-wider text-red-400 font-mono">
+                    <h3 className="text-xs font-bold uppercase tracking-wider text-[#d4af37] font-mono">
                       3. Tus Datos
                     </h3>
                     <div className="grid grid-cols-2 gap-2">
@@ -569,14 +569,14 @@ export function CartDrawer({
                         value={customer.name}
                         onChange={(e) => setCustomer({ ...customer, name: e.target.value })}
                         placeholder="Tu Nombre completo"
-                        className="w-full px-3 py-2 rounded-xl bg-white/[0.04] border border-white/10 text-xs text-white placeholder-stone-500 focus:outline-none focus:border-red-500"
+                        className="w-full px-3 py-2 rounded-xl bg-white/[0.04] border border-white/10 text-xs text-white placeholder-stone-500 focus:outline-none focus:border-[#d4af37]"
                       />
                       <input
                         type="tel"
                         value={customer.phone}
                         onChange={(e) => setCustomer({ ...customer, phone: e.target.value })}
                         placeholder="Teléfono / WhatsApp"
-                        className="w-full px-3 py-2 rounded-xl bg-white/[0.04] border border-white/10 text-xs text-white placeholder-stone-500 focus:outline-none focus:border-red-500"
+                        className="w-full px-3 py-2 rounded-xl bg-white/[0.04] border border-white/10 text-xs text-white placeholder-stone-500 focus:outline-none focus:border-[#d4af37]"
                       />
                     </div>
                   </div>
@@ -586,7 +586,7 @@ export function CartDrawer({
 
             {/* Drawer Footer with Totals & WhatsApp CTA */}
             {cart.length > 0 && (
-              <div className="p-4 sm:p-5 border-t border-white/[0.1] bg-[#080505]/95 shrink-0 space-y-3">
+              <div className="p-4 sm:p-5 border-t border-white/[0.1] bg-[#09090b]/95 shrink-0 space-y-3">
                 <div className="space-y-1.5 text-xs text-stone-300">
                   <div className="flex justify-between">
                     <span>Subtotal:</span>
@@ -595,13 +595,13 @@ export function CartDrawer({
                   {deliveryFee > 0 && (
                     <div className="flex justify-between">
                       <span>Delivery:</span>
-                      <span className="font-mono font-bold text-red-400">+${deliveryFee}</span>
+                      <span className="font-mono font-bold text-[#d4af37]">+${deliveryFee}</span>
                     </div>
                   )}
                   <div className="flex justify-between text-base font-bold text-white pt-1 border-t border-white/[0.08]">
                     <span>Total a Pagar:</span>
                     <div className="text-right">
-                      <div className="font-mono text-red-400 font-bold">${grandTotalUsd} USD</div>
+                      <div className="font-mono text-[#d4af37] font-bold">${grandTotalUsd} USD</div>
                       {grandTotalBs && (
                         <div className="text-[11px] font-mono text-emerald-400 font-normal">
                           {grandTotalBs}

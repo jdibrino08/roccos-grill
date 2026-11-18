@@ -16,13 +16,13 @@ export function HeroFlyThrough({ onScrollToMenu, onOpenCart }: HeroFlyThroughPro
         <img
           src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=2000&q=85"
           alt="Parrilla al carbón y cortes a la brasa en Rocco's Grill"
-          className="h-full w-full object-cover object-center filter brightness-[0.34] contrast-[1.16] scale-105 transform motion-safe:animate-[pulse_14s_ease-in-out_infinite]"
+          className="h-full w-full object-cover object-center filter brightness-[0.32] contrast-[1.15] scale-105 transform motion-safe:animate-[pulse_14s_ease-in-out_infinite]"
         />
         {/* Directional Cinematic Vignettes */}
-        <div className="absolute inset-0 bg-gradient-to-t from-[#080606] via-[#080606]/65 to-black/85" />
-        <div className="absolute inset-0 bg-radial-gradient from-transparent via-[#080606]/40 to-[#080606]" />
-        {/* Subtle Fiery Red Ember Glow Spot in the Bottom-Center */}
-        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[650px] h-[300px] bg-gradient-to-t from-red-600/20 via-rose-700/10 to-transparent blur-3xl pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#09090b] via-[#09090b]/70 to-black/85" />
+        <div className="absolute inset-0 bg-radial-gradient from-transparent via-[#09090b]/40 to-[#09090b]" />
+        {/* Subtle Champagne Gold Glow Spot in the Bottom-Center */}
+        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[650px] h-[300px] bg-gradient-to-t from-[#d4af37]/15 via-[#997a38]/08 to-transparent blur-3xl pointer-events-none" />
       </div>
 
       {/* Main Content Container - Millimeter Optical Spacing */}
@@ -32,16 +32,16 @@ export function HeroFlyThrough({ onScrollToMenu, onOpenCart }: HeroFlyThroughPro
           initial={{ opacity: 0, y: -16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-          className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-red-950/40 border border-red-500/30 backdrop-blur-xl mb-6 shadow-[0_4px_20px_rgba(220,38,38,0.2)]"
+          className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-white/[0.04] border border-[#d4af37]/30 backdrop-blur-xl mb-6 shadow-[0_4px_20px_rgba(212,175,55,0.15)]"
         >
-          <span className="flex h-2 w-2 rounded-full bg-red-500 animate-pulse" />
-          <span className="text-xs font-mono font-medium tracking-widest uppercase text-red-200/90">
+          <span className="flex h-2 w-2 rounded-full bg-[#d4af37] animate-pulse" />
+          <span className="text-xs font-mono font-medium tracking-widest uppercase text-[#fae8b2]/90">
             San Diego, Carabobo · Brasas Vivas & Fuego Directo
           </span>
           <span className="hidden sm:inline-block text-stone-600">|</span>
           <span className="hidden sm:inline-flex items-center gap-1 text-xs text-stone-300">
-            <Award className="h-3 w-3 text-red-400" />
-            Steakhouse & Restobar
+            <Award className="h-3 w-3 text-[#d4af37]" />
+            Restobar & Steakhouse
           </span>
         </motion.div>
 
@@ -54,7 +54,7 @@ export function HeroFlyThrough({ onScrollToMenu, onOpenCart }: HeroFlyThroughPro
         >
           <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black font-display tracking-tight leading-[0.98] uppercase">
             <span className="block text-white">SABOR A LA BRASA</span>
-            <GlassText variant="red" className="tracking-tight" shimmer={true}>
+            <GlassText variant="gold" className="tracking-tight" shimmer={true}>
               & COCTELERÍA.
             </GlassText>
           </h1>
@@ -70,7 +70,7 @@ export function HeroFlyThrough({ onScrollToMenu, onOpenCart }: HeroFlyThroughPro
           {BRAND_CONFIG.heroSubheadline}
         </motion.p>
 
-        {/* Layer 4: Primary & Secondary Action CTAs (Fiery Red) */}
+        {/* Layer 4: Primary & Secondary Action CTAs (Champagne Gold) */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -79,7 +79,7 @@ export function HeroFlyThrough({ onScrollToMenu, onOpenCart }: HeroFlyThroughPro
         >
           <button
             onClick={onScrollToMenu}
-            className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-xl bg-gradient-to-r from-red-600 via-rose-600 to-red-700 text-white font-bold text-sm tracking-wider uppercase shadow-[0_10px_35px_rgba(220,38,38,0.45)] hover:shadow-[0_14px_45px_rgba(220,38,38,0.65)] hover:scale-[1.02] active:scale-[0.98] transition-all cursor-pointer group"
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-xl bg-gradient-to-r from-[#d4af37] via-[#e6c775] to-[#c59b27] text-stone-950 font-bold text-sm tracking-wider uppercase shadow-[0_10px_35px_rgba(212,175,55,0.35)] hover:shadow-[0_14px_45px_rgba(212,175,55,0.5)] hover:scale-[1.02] active:scale-[0.98] transition-all cursor-pointer group"
           >
             <span>Ver Menú & Precios</span>
             <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
@@ -87,9 +87,9 @@ export function HeroFlyThrough({ onScrollToMenu, onOpenCart }: HeroFlyThroughPro
 
           <button
             onClick={onOpenCart}
-            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-7 py-4 rounded-xl bg-white/[0.06] hover:bg-white/[0.1] border border-white/[0.14] backdrop-blur-xl text-white font-semibold text-sm tracking-wider uppercase transition-all cursor-pointer hover:border-red-500/40"
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-7 py-4 rounded-xl bg-white/[0.06] hover:bg-white/[0.1] border border-white/[0.14] backdrop-blur-xl text-white font-semibold text-sm tracking-wider uppercase transition-all cursor-pointer hover:border-[#d4af37]/40"
           >
-            <Flame className="h-4 w-4 text-red-500" />
+            <Flame className="h-4 w-4 text-[#d4af37]" />
             <span>Hacer Pedido Rápido</span>
           </button>
         </motion.div>
@@ -102,7 +102,7 @@ export function HeroFlyThrough({ onScrollToMenu, onOpenCart }: HeroFlyThroughPro
           className="grid grid-cols-1 sm:grid-cols-3 gap-3 w-full max-w-3xl"
         >
           <div className="glass-panel p-3.5 rounded-xl border border-white/[0.08] flex items-center gap-3 text-left">
-            <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-red-600/15 border border-red-500/30 text-red-500">
+            <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-[#d4af37]/10 border border-[#d4af37]/25 text-[#d4af37]">
               <Car className="h-4 w-4" />
             </div>
             <div>
@@ -112,7 +112,7 @@ export function HeroFlyThrough({ onScrollToMenu, onOpenCart }: HeroFlyThroughPro
           </div>
 
           <div className="glass-panel p-3.5 rounded-xl border border-white/[0.08] flex items-center gap-3 text-left">
-            <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-rose-600/15 border border-rose-500/30 text-rose-400">
+            <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-[#d4af37]/10 border border-[#d4af37]/25 text-[#d4af37]">
               <Bike className="h-4 w-4" />
             </div>
             <div>
