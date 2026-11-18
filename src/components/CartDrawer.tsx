@@ -31,6 +31,18 @@ interface CartDrawerProps {
   onOpenMenu: () => void
 }
 
+const VENEZUELA_BANKS = [
+  'Banesco',
+  'Mercantil',
+  'Banco de Venezuela',
+  'Bancamiga',
+  'BBVA Provincial',
+  'Banco Nacional de Crédito (BNC)',
+  'Bancaribe',
+  'Banplus',
+  'Otro Banco',
+]
+
 export function CartDrawer({
   isOpen,
   onClose,
@@ -54,6 +66,8 @@ export function CartDrawer({
     vehicleDescription: '',
     paymentMethod: 'pagoMovil',
     cashBill: 'Exacto',
+    pagoMovilBank: 'Banesco',
+    pagoMovilReference: '',
     notes: '',
   })
 
@@ -157,6 +171,12 @@ export function CartDrawer({
     text += `\n💳 *MÉTODO DE PAGO:*\n`
     if (customer.paymentMethod === 'pagoMovil') {
       text += `📱 *Pago Móvil* (Total a transferir: ${grandTotalBs || 'Consultar'})\n`
+      if (customer.pagoMovilReference?.trim()) {
+        text += `   • *Referencia Bancaria:* #${customer.pagoMovilReference.trim()}\n`
+      }
+      if (customer.pagoMovilBank) {
+        text += `   • *Banco Emisor:* ${customer.pagoMovilBank}\n`
+      }
     } else if (customer.paymentMethod === 'cash') {
       text += `💵 *Efectivo USD* (Cambio solicitado: ${customer.cashBill || 'Exacto'})\n`
     } else {
@@ -516,6 +536,44 @@ export function CartDrawer({
                             </>
                           )}
                         </button>
+
+                        {/* Direct Reference Validation & Bank Selection */}
+                        <div className="pt-2 border-t border-emerald-500/20 space-y-2 mt-2">
+                          <div className="space-y-1">
+                            <label className="text-[10px] uppercase font-mono tracking-wider text-emerald-300 font-bold block">
+                              Tu Banco emisor:
+                            </label>
+                            <select
+                              value={customer.pagoMovilBank || 'Banesco'}
+                              onChange={(e) => setCustomer({ ...customer, pagoMovilBank: e.target.value })}
+                              className="w-full px-3 py-1.5 rounded-lg bg-black/60 border border-emerald-500/30 text-xs text-white focus:outline-none focus:border-emerald-400"
+                            >
+                              {VENEZUELA_BANKS.map((b) => (
+                                <option key={b} value={b} className="bg-neutral-900 text-white">
+                                  {b}
+                                </option>
+                              ))}
+                            </select>
+                          </div>
+
+                          <div className="space-y-1">
+                            <label className="text-[10px] uppercase font-mono tracking-wider text-emerald-300 font-bold block">
+                              Número de Referencia Bancaria:
+                            </label>
+                            <input
+                              type="text"
+                              value={customer.pagoMovilReference || ''}
+                              onChange={(e) => setCustomer({ ...customer, pagoMovilReference: e.target.value })}
+                              placeholder="Últimos 4 a 6 dígitos (ej: 489210)"
+                              className="w-full px-3 py-1.5 rounded-lg bg-black/60 border border-emerald-500/30 text-xs text-white placeholder-stone-500 focus:outline-none focus:border-emerald-400 font-mono"
+                            />
+                          </div>
+
+                          <div className="p-2 rounded-lg bg-emerald-950/40 border border-emerald-500/20 text-[10px] text-emerald-300/85 font-mono flex items-start gap-1.5">
+                            <span className="text-emerald-400 font-bold text-xs leading-none">✓</span>
+                            <span>La comanda adjuntará la referencia para que caja verifique el pago al instante.</span>
+                          </div>
+                        </div>
                       </div>
                     )}
 

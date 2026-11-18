@@ -28,5 +28,7 @@ export interface CheckoutCustomer {
   vehicleDescription?: string // for drive-thru
   paymentMethod: PaymentMethod
   cashBill?: string // e.g. "Exacto", "$10", "$20", "$50"
+  pagoMovilReference?: string
+  pagoMovilBank?: string
   notes?: string
 }
