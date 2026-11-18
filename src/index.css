@@ -2,15 +2,14 @@
 
 @layer base {
   :root {
-    /* Rocco's Grill: Luxury Restobar & Steakhouse Palette (Champagne Gold & Smoked Obsidian) */
-    --color-charcoal: #09090b;
-    --color-hearth: #121215;
-    --color-gold: #d4af37;
-    --color-gold-light: #fef08a;
-    --color-champagne: #fae8b2;
-    --color-bronze: #997a38;
-    --color-bone: #fafafa;
-    --color-smoke: #a1a1aa;
+    /* Rocco's Grill: Warm Culinary Hearth Palette (El Dodo Master Grade) */
+    --color-charcoal: #110c09;
+    --color-hearth: #1a120d;
+    --color-ember: #ea580c;
+    --color-saffron: #f59e0b;
+    --color-gold: #fbbf24;
+    --color-toum: #faf6f0;
+    --color-tahini: #d4a373;
     --font-display: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
     --font-serif: 'Instrument Serif', Georgia, serif;
     --font-mono: 'JetBrains Mono', ui-monospace, monospace;
@@ -38,7 +37,7 @@
 
   body {
     background-color: var(--color-charcoal);
-    color: var(--color-bone);
+    color: var(--color-toum);
     font-family: var(--font-display);
     overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
@@ -54,13 +53,13 @@
   }
 
   ::selection {
-    background-color: rgba(212, 175, 55, 0.35);
+    background-color: rgba(245, 158, 11, 0.35);
     color: #ffffff;
   }
 }
 
 /* ============================================================================
-   OPTICAL LIQUID GLASS TYPOGRAPHY & SURFACES (CHAMPAGNE GOLD & OBSIDIAN)
+   WARM CULINARY FROSTED GLASS TYPOGRAPHY & SURFACES
    ============================================================================ */
 
 @keyframes glass-light-sweep {
@@ -76,9 +75,9 @@
   font-family: var(--font-display);
   background: linear-gradient(
     180deg,
-    #ffffff 0%,
-    rgba(255, 255, 255, 0.96) 58%,
-    rgba(250, 232, 178, 0.65) 100%
+    #fffdf9 0%,
+    rgba(255, 250, 240, 0.94) 58%,
+    rgba(245, 228, 200, 0.65) 100%
   );
   -webkit-background-clip: text;
   background-clip: text;
@@ -86,14 +85,13 @@
   color: transparent;
 }
 
-.glass-text-gold {
+.glass-text-amber {
   font-family: var(--font-display);
   background: linear-gradient(
     180deg,
-    #ffffff 0%,
-    #fef08a 38%,
-    #d4af37 72%,
-    #997a38 100%
+    #fffbeb 0%,
+    #fbbf24 52%,
+    #ea580c 100%
   );
   -webkit-background-clip: text;
   background-clip: text;
@@ -106,7 +104,7 @@
     115deg,
     transparent 30%,
     rgba(255, 255, 255, 0) 44%,
-    rgba(254, 240, 138, 0.32) 50%,
+    rgba(255, 248, 230, 0.32) 50%,
     rgba(255, 255, 255, 0) 56%,
     transparent 70%
   );
@@ -125,20 +123,20 @@
   }
 }
 
-/* Smoked Obsidian Glass Panel */
+/* Warm Smoked-Glass Surface */
 .glass-panel {
   background: linear-gradient(
     135deg,
-    rgba(255, 255, 255, 0.05) 0%,
-    rgba(18, 18, 22, 0.72) 60%,
-    rgba(212, 175, 55, 0.04) 100%
+    rgba(255, 244, 230, 0.08) 0%,
+    rgba(30, 20, 14, 0.55) 60%,
+    rgba(255, 235, 205, 0.05) 100%
   );
-  backdrop-filter: blur(24px) saturate(140%);
-  -webkit-backdrop-filter: blur(24px) saturate(140%);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(24px) saturate(150%);
+  -webkit-backdrop-filter: blur(24px) saturate(150%);
+  border: 1px solid rgba(255, 235, 205, 0.14);
   box-shadow:
-    inset 0 1px 0 0 rgba(255, 255, 255, 0.16),
-    0 20px 56px rgba(0, 0, 0, 0.7);
+    inset 0 1px 0 0 rgba(255, 245, 230, 0.22),
+    0 20px 56px rgba(0, 0, 0, 0.55);
 }
 
 /* Custom Scrollbar for drawers */
@@ -147,12 +145,12 @@
   height: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: rgba(9, 9, 11, 0.8);
+  background: rgba(17, 12, 9, 0.8);
 }
 ::-webkit-scrollbar-thumb {
   background: rgba(255, 255, 255, 0.15);
   border-radius: 9999px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(212, 175, 55, 0.5);
+  background: rgba(245, 158, 11, 0.5);
 }

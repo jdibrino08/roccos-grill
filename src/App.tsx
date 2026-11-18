@@ -96,7 +96,7 @@ export default function App() {
 
   return (
     <SmoothScroll>
-      <div className="min-h-screen bg-[#09090b] text-[#fafafa] flex flex-col selection:bg-[#d4af37]/30 selection:text-[#fae8b2]">
+      <div className="min-h-screen bg-[#110c09] text-[#faf6f0] flex flex-col selection:bg-amber-500/30 selection:text-amber-200">
         {/* Navigation */}
         <Navbar
           cartCount={totalCartCount}

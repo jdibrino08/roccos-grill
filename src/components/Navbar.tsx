@@ -1,7 +1,6 @@
-import { Flame, ShoppingBag, MapPin, RefreshCw } from 'lucide-react'
-import { motion, AnimatePresence } from 'motion/react'
+import { useState, useEffect } from 'react'
+import { Flame, ShoppingBag, Star } from 'lucide-react'
 import { BRAND_CONFIG } from '../data/brandConfig'
-import { formatRateDisplay, useBcvRate } from '../hooks/useBcvRate'
 
 interface NavbarProps {
   cartCount: number
@@ -10,98 +9,94 @@ interface NavbarProps {
 }
 
 export function Navbar({ cartCount, onOpenCart, onScrollToMenu }: NavbarProps) {
-  const { rate, isRefreshing, refresh } = useBcvRate()
+  const [scrolled, setScrolled] = useState(false)
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 24)
+    }
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
-      {/* Top Glass Surface with Blur & Specular Border */}
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-3">
-        <nav className="glass-panel rounded-2xl px-4 py-2.5 sm:px-6 flex items-center justify-between border border-white/[0.12] bg-[#09090b]/85 backdrop-blur-2xl shadow-[0_12px_40px_rgba(0,0,0,0.7),inset_0_1px_0_rgba(255,255,255,0.15)]">
-          {/* Brand Mark */}
+    <header
+      className={`fixed top-0 left-0 right-0 z-50 h-16 flex items-center transition-all duration-300 ${
+        scrolled
+          ? 'bg-[#110c09]/92 backdrop-blur-2xl saturate-150 border-b border-amber-100/10'
+          : 'bg-[#110c09]/50 backdrop-blur-xl border-b border-amber-100/[0.06]'
+      }`}
+    >
+      <div className="w-full max-w-7xl mx-auto px-4 sm:px-8 flex items-center justify-between gap-4">
+        {/* Brand Lockup */}
+        <button
+          onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+          className="flex items-center gap-2.5 group text-left cursor-pointer focus:outline-none"
+        >
+          <div className="w-8 h-8 rounded-full bg-amber-400/15 border border-amber-400/35 flex items-center justify-center shrink-0">
+            <Flame className="w-4 h-4 text-amber-400" />
+          </div>
+          <div>
+            <span className="text-sm sm:text-base font-extrabold tracking-tight text-white block leading-none whitespace-nowrap font-display">
+              ROCCO'S <span className="text-amber-400">GRILL</span>
+            </span>
+            <span className="text-[10px] font-mono text-neutral-400 tracking-wider uppercase hidden sm:block mt-0.5">
+              Av. Don Julio Centeno · San Diego
+            </span>
+          </div>
+        </button>
+
+        {/* Clean Customer Navigation */}
+        <nav className="hidden md:flex items-center gap-8">
           <button
             onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-            className="flex items-center gap-3 text-left group cursor-pointer focus:outline-none"
-            aria-label="Ir al inicio"
+            className="text-xs font-medium text-neutral-300 hover:text-amber-300 transition-colors cursor-pointer"
           >
-            <div className="relative flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-[#d4af37]/25 via-[#997a38]/15 to-transparent border border-[#d4af37]/35 shadow-[0_0_20px_rgba(212,175,55,0.2)] group-hover:border-[#d4af37] transition-colors">
-              <Flame className="h-5 w-5 text-[#d4af37] group-hover:scale-110 transition-transform duration-300" />
-            </div>
-            <div className="flex flex-col">
-              <span className="font-extrabold tracking-wider text-base sm:text-lg text-white font-display leading-tight flex items-center gap-1.5">
-                ROCCO'S <span className="text-[#d4af37] font-light">GRILL</span>
-              </span>
-              <span className="text-[10px] tracking-wider text-[#fae8b2]/60 uppercase font-mono">
-                San Diego · Restobar & Steakhouse
-              </span>
-            </div>
+            Inicio
           </button>
-
-          {/* Center Info: Live BCV + San Diego Pill */}
-          <div className="hidden md:flex items-center gap-3">
-            {/* San Diego Location Pill */}
-            <a
-              href={BRAND_CONFIG.googleMapsUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/[0.04] border border-white/[0.08] hover:border-[#d4af37]/40 text-xs text-stone-300 hover:text-white transition-all"
-              title="Ver ubicación en Google Maps"
-            >
-              <MapPin className="h-3.5 w-3.5 text-[#d4af37]" />
-              <span>Av. Don Julio Centeno</span>
-            </a>
-
-            {/* Subtle Tasa BCV Pill (Minimal & discreet, OK-09) */}
-            {rate && (
-              <div className="flex items-center gap-2 px-2.5 py-1 rounded-full bg-white/[0.04] border border-white/[0.08] text-xs text-stone-300 font-mono">
-                <span className="relative flex h-1.5 w-1.5">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                  <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-emerald-500"></span>
-                </span>
-                <span className="text-[11px]">BCV: {formatRateDisplay(rate)}</span>
-                <button
-                  onClick={() => void refresh()}
-                  disabled={isRefreshing}
-                  className="text-stone-400 hover:text-white cursor-pointer transition-transform active:rotate-180 disabled:opacity-50"
-                  aria-label="Actualizar tasa BCV"
-                >
-                  <RefreshCw className={`h-2.5 w-2.5 ${isRefreshing ? 'animate-spin' : ''}`} />
-                </button>
-              </div>
-            )}
-          </div>
-
-          {/* Right Actions: Menu Quick Link + Cart Drawer Trigger */}
-          <div className="flex items-center gap-2.5 sm:gap-3">
-            <button
-              onClick={onScrollToMenu}
-              className="hidden sm:inline-flex items-center px-4 py-2 rounded-xl text-xs font-semibold tracking-wide text-stone-200 hover:text-white hover:bg-white/[0.06] transition-all cursor-pointer"
-            >
-              Ver Carta
-            </button>
-
-            {/* Cart Button with Animated Counter (Champagne Gold) */}
-            <button
-              onClick={onOpenCart}
-              className="relative flex items-center gap-2 px-4 py-2 sm:px-4.5 sm:py-2.5 rounded-xl bg-gradient-to-r from-[#d4af37] via-[#e6c775] to-[#c59b27] text-stone-950 font-bold text-xs sm:text-sm tracking-wide shadow-[0_4px_24px_rgba(212,175,55,0.3)] hover:shadow-[0_6px_30px_rgba(212,175,55,0.45)] hover:scale-[1.02] active:scale-[0.98] transition-all cursor-pointer"
-              aria-label={`Ver pedido con ${cartCount} productos`}
-            >
-              <ShoppingBag className="h-4 w-4 text-stone-950" />
-              <span className="hidden xs:inline">Mi Pedido</span>
-              <AnimatePresence>
-                {cartCount > 0 && (
-                  <motion.span
-                    initial={{ scale: 0, opacity: 0 }}
-                    animate={{ scale: 1, opacity: 1 }}
-                    exit={{ scale: 0, opacity: 0 }}
-                    className="flex h-5 min-w-5 px-1 items-center justify-center rounded-full bg-stone-950 text-[#d4af37] text-[11px] font-mono font-black"
-                  >
-                    {cartCount}
-                  </motion.span>
-                )}
-              </AnimatePresence>
-            </button>
-          </div>
+          <button
+            onClick={onScrollToMenu}
+            className="text-xs font-medium text-neutral-300 hover:text-amber-300 transition-colors cursor-pointer"
+          >
+            Menú & Brasas
+          </button>
+          <a
+            href={BRAND_CONFIG.googleMapsUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-xs font-medium text-neutral-300 hover:text-amber-300 transition-colors"
+          >
+            Drive-Through & Ubicación
+          </a>
         </nav>
+
+        {/* Right Controls */}
+        <div className="flex items-center gap-4">
+          <a
+            href={BRAND_CONFIG.googleMapsUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hidden sm:inline-flex items-center gap-1.5 text-xs text-neutral-300 hover:text-white transition-colors"
+          >
+            <Star className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />
+            <span className="font-bold text-white">4.9</span>
+            <span className="text-neutral-400 hidden lg:inline">Google</span>
+          </a>
+
+          <button
+            onClick={onOpenCart}
+            aria-label="Abrir Pedido"
+            className="inline-flex items-center gap-2 px-4 sm:px-5 py-2 rounded-full bg-amber-400 hover:bg-amber-300 text-neutral-950 font-bold text-xs active:scale-95 transition-all cursor-pointer shadow-[0_4px_16px_rgba(245,158,11,0.3)]"
+          >
+            <ShoppingBag className="w-3.5 h-3.5" />
+            <span>Pedir</span>
+            {cartCount > 0 && (
+              <span className="w-5 h-5 rounded-full bg-neutral-950 text-amber-300 text-[11px] font-bold flex items-center justify-center font-mono">
+                {cartCount}
+              </span>
+            )}
+          </button>
+        </div>
       </div>
     </header>
   )
